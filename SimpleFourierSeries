@@ -1,0 +1,100 @@
+import tkinter
+import numpy as np
+from tkinter import *
+import math
+from matplotlib.backends.backend_tkagg import (
+    FigureCanvasTkAgg)
+from matplotlib.figure import Figure
+
+root = Tk()
+root.title("Simple Fourier")
+root.geometry("1600x1600")
+
+
+
+class ModelSetUp:
+    def __init__(self, master1):
+        self.myFrame = Frame(master1)
+        self.myFrame.pack()
+        ModelSetUp.datasetup(self)
+
+    def datasetup(self):
+
+        # data set up
+
+        self.Data_set_up = tkinter.LabelFrame(self.myFrame, text="Data Set Up")
+        self.Data_set_up.grid(row=0, column=0)
+
+
+        self.Data_Set_Up = tkinter.LabelFrame(self.Data_set_up, text="Data Set Up")
+        self.Data_Set_Up.grid(row=0, column=0, padx=10, pady=10)
+
+        self.NumberOfSteps_label = tkinter.Label(self.Data_Set_Up,
+                                                                    text="Number Of Steps")
+        self.NumberOfSteps_label.grid(row=1, column=0)
+
+
+
+        self.NumberOfCycles_label = tkinter.Label(self.Data_Set_Up,
+                                                                    text="Number Of Cycles")
+        self.NumberOfCycles_label.grid(row=2, column=0)
+
+        self.NumberOfTermsInFourierSeries_label = tkinter.Label(self.Data_Set_Up,
+                                                  text="Number Of Terms in Fourier Series")
+        self.NumberOfTermsInFourierSeries_label.grid(row=3, column=0)
+
+        self.NumberOfSteps= tkinter.Entry(self.Data_Set_Up)
+        self.NumberOfSteps.insert(0, 100)
+        self.NumberOfSteps.grid(row=1, column=1)
+
+        self.NumberOfCycles = tkinter.Entry(self.Data_Set_Up)
+        self.NumberOfCycles.insert(0, 1)
+        self.NumberOfCycles.grid(row=2, column=1)
+
+        self.NumberOfTermsInFourierSeries = tkinter.Entry(self.Data_Set_Up)
+        self.NumberOfTermsInFourierSeries.insert(0, 100)
+        self.NumberOfTermsInFourierSeries.grid(row=3, column=1)
+
+
+        # add button
+
+        self.Data_entry_button = tkinter.Button(self.myFrame, text="Commence analysis", command=self.Fourier)
+        self.Data_entry_button.grid(row=3, column=0)
+
+    def Fourier(self):
+        print ("test")
+        self.x_value = []
+        self.y_value = []
+        self.y2_value = []
+        y_total = 0
+        y = 0
+        Increment = (int(self.NumberOfCycles.get())) * 2 * np.pi / float(self.NumberOfSteps.get())  # works out the length of each itertion
+
+        for i in range(1, int(self.NumberOfSteps.get())):
+            y_total = 0
+            self.x_input = i * Increment
+            self.x_value.append(self.x_input)
+
+            for n in range(1, int(self.NumberOfTermsInFourierSeries.get())):
+                y = math.sin(n * self.x_input) / n
+                y_total = y + y_total
+            self.y_value.append(y_total)
+
+        self.Output = tkinter.LabelFrame(self.myFrame, text="Outputs")
+        self.Output.grid(row=2, column=0)
+
+        fig = Figure(figsize=(5, 4), dpi=100)
+        fig.add_subplot(111).plot(self.x_value, self.y_value)
+        fig.suptitle("sin x + sin(2x)/2 + ...")
+
+        canvas = FigureCanvasTkAgg(fig, master=self.Output)  # A tk.DrawingArea.
+        canvas.draw()
+        canvas.get_tk_widget().grid(row=0, column=0)
+
+
+
+
+Model = ModelSetUp(root)  # passes the root window to the class
+
+
+root.mainloop()
