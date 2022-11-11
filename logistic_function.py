@@ -74,6 +74,7 @@ class ModelSetUp:
         self.printgraph(data1, data2, data3)
 
     def logistic2(self):
+        resetbifurcationdata()
         PlotBifurcationDiagram(float(self.PowersValue.get()))
         print("xvalue = ", xvalue)
         print("yvalue1 = ", yvalue1)
@@ -150,11 +151,11 @@ def logistic1(x,constant,power):
     if x1 >= 1:
         print ("all dead")
         data1.append(x1)
-        return data
+        return data1
     if x1<= 0:
         print ("all dead")
         data1.append(x1)
-        return data
+        return data1
     else:
         print (x1)
         data1.append(x1)
@@ -173,11 +174,11 @@ def logistic2(x,constant):
     if x2 >= 1:
         print ("all dead")
         data2.append(x2)
-        return data
+        return data1
     if x2<= 0:
         print ("all dead")
         data2.append(x2)
-        return data
+        return data1
     else:
         print (x2)
         data2.append(x2)
@@ -196,7 +197,7 @@ def logistic3(x,constant):
     if x3 >= 1:
         print ("all dead")
         data3.append(x3)
-        return data
+        return data1
     if x3<= 0:
         print ("all dead")
         data3.append(x3)
@@ -229,6 +230,11 @@ def PlotBifurcationDiagram(power1):
             xvalue.append(j2)
     return xvalue,yvalue1,yvalue2,yvalue3
 
+def resetbifurcationdata():
+    yvalue1.clear()
+    yvalue2.clear()
+    yvalue3.clear()
+    xvalue.clear()
 
 def resetdata():
     data1.clear()
@@ -238,4 +244,5 @@ def resetdata():
 Model = ModelSetUp(root)  # passes the root window to the class
 
 root.mainloop()
+
 
