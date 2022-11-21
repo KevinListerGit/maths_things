@@ -1,0 +1,67 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import cmath
+
+power = float(input ("Power to evaluate graph at = "))
+x= []
+y= []
+# counts the number of iterations until the function diverges or
+# returns the iteration threshold that we check until
+def countIterationsUntilDivergent(c, threshold,power,iterations):
+    z = complex(0, 0)
+    for iteration in range(threshold):
+
+        polar = cmath.polar(z)
+        argument = polar[1] * power
+        modulus = polar[0] ** power
+
+        z2r = cmath.rect(modulus, argument)
+
+        # add to cvalue to get new z value using z = z^p+c
+
+        z = z2r + c
+
+        if abs(z) > iterations:
+            realpartc = c.real
+            impagpartc = c.imag
+            x.append(realpartc)
+            y.append(impagpartc)
+            break
+            pass
+        pass
+    return iteration
+
+# takes the iteration limit before declaring function as convergent and
+# takes the density of the atlas
+# create atlas, plot mandelbrot set, display set
+def mandelbrot(threshold, density, power):
+    # location and size of the atlas rectangle
+    realAxis = np.linspace(-2.25, 0.75, density)
+    imaginaryAxis = np.linspace(-1.5, 1.5, density)
+    #realAxis = np.linspace(-0.22, -0.219, density)
+    #imaginaryAxis = np.linspace(-0.70, -0.699, density)
+    realAxisLen = len(realAxis)
+    imaginaryAxisLen = len(imaginaryAxis)
+
+    # 2-D array to represent mandelbrot atlas
+    grid = np.empty((realAxisLen, imaginaryAxisLen))
+
+    # color each point in the atlas depending on the iteration count
+
+    for ix in range(realAxisLen):
+        for iy in range(imaginaryAxisLen):
+            cx = realAxis[ix]
+            cy = imaginaryAxis[iy]
+            c = complex(cx, cy)
+
+            grid[ix, iy] = countIterationsUntilDivergent(c, threshold,power,4)
+            print (grid[ix,iy])
+
+
+    plt.imshow(grid.T, interpolation="nearest",cmap=plt.cm.gray )
+
+    plt.show()
+
+
+
+mandelbrot(100,1000,power)
