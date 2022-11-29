@@ -30,3 +30,15 @@ The diagrams below show allow comparison between differernt functions for the sa
 
 On this graph the the power is changed to 1.5 to change the standard bifurcation function on the bottom left diagram
 ![logistic function 4](https://user-images.githubusercontent.com/96957075/204502573-f2a2f15c-3a24-4e25-a37c-c85819d90291.jpg)
+
+The Mandlbrot file allows the Mandlbrot Set to be produced for any power. ie. z(n+1) = zn ^ p + c where z and c are complex numbers
+
+Power = 2
+![mandelbrot2](https://user-images.githubusercontent.com/96957075/204508679-384f6d8c-16e8-4d77-99f8-92c29759d6ab.jpg)
+
+Power = 3
+![mandelbrot3](https://user-images.githubusercontent.com/96957075/204508842-f78abcce-7f9a-4253-97c7-77731ddca5b8.jpg)
+
+Power  = 1.5
+![mandelbrot1point5](https://user-images.githubusercontent.com/96957075/204508904-08bc6b29-c235-435d-950f-c0a50a99ce4a.jpg)
+
