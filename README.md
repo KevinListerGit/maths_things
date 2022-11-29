@@ -28,5 +28,5 @@ The diagrams below show allow comparison between differernt functions for the sa
 
 ![logistic function 3](https://user-images.githubusercontent.com/96957075/204502517-b13db771-59f1-44fe-84a8-fc6a9e90c536.jpg)
 
-On this graph the a power is added to the standard logistic function and we can see on the bottom right diagram how the bifurcation plot changes
+On this graph the the power is changed to 1.5 to change the standard bifurcation function on the bottom left diagram
 ![logistic function 4](https://user-images.githubusercontent.com/96957075/204502573-f2a2f15c-3a24-4e25-a37c-c85819d90291.jpg)
