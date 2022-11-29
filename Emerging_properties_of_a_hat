@@ -1,0 +1,238 @@
+import matplotlib.pyplot as plt
+
+
+class hat():
+    def __init__(self, xstart, ystart, xfinish, yfininsh):
+        self.xstart = xstart
+        self.ystart = ystart
+        self.xfinish = xfinish
+        self.yfinish = yfininsh
+        self.xcord = []
+        self.ycord = []
+
+    def calculatepoints(self):
+
+        #This function checks the orientation of a straight line on a hat and then replicates the hat shape
+        #on the straight line
+
+        if self.xstart < self.xfinish:  # horizontal line going left to right
+
+            # first leg
+            length = (self.xfinish - self.xstart) / 3
+
+            # starting coordinate
+
+            self.xcord.append(self.xstart)
+            self.ycord.append(self.ystart)
+
+            # first co-ordinate
+
+            self.xcord.append(length + self.xstart)
+            self.ycord.append(self.ystart)
+
+            # second co-ordinate
+
+            self.xcord.append(length + self.xstart)
+            self.ycord.append(length + self.ystart)
+
+            # third co-ordinate
+
+            self.xcord.append(2 * length + self.xstart)
+            self.ycord.append(length + self.ystart)
+
+            # fourth co-ordinate
+
+            self.xcord.append(2 * length + self.xstart)
+            self.ycord.append(self.ystart)
+
+            # fifth co-ordinate
+
+            self.xcord.append(3 * length + self.xstart)
+            self.ycord.append(self.ystart)
+
+        if self.xstart > self.xfinish:  # horizontal line going right to left
+
+            # first leg
+            length = (self.xstart - self.xfinish) / 3
+
+            # starting coordinate
+
+            self.xcord.append(self.xstart)
+            self.ycord.append(self.ystart)
+
+            # first co-ordinate
+
+            self.xcord.append(self.xstart - length)
+            self.ycord.append(self.ystart)
+
+            # second co-ordinate
+
+            self.xcord.append(-length + self.xstart)
+            self.ycord.append(-length + self.ystart)
+
+            # third co-ordinate
+
+            self.xcord.append(-2 * length + self.xstart)
+            self.ycord.append( -length + self.ystart)
+
+            # fourth co-ordinate
+
+            self.xcord.append(-2 * length + self.xstart)
+            self.ycord.append( self.ystart)
+
+            # fifth co-ordinate
+
+            self.xcord.append(-3 * length + self.xstart)
+            self.ycord.append(self.ystart)
+
+
+        if self.xstart == self.xfinish:
+
+            if self.yfinish > self.ystart: # vertical line going upwards
+                # first leg
+                length = (self.yfinish - self.ystart) / 3
+
+                # starting coordinate
+
+                #self.xcord.append(self.xstart)
+                #self.ycord.append(self.ystart)
+
+                # first co-ordinate
+
+                self.xcord.append(self.xstart)
+                self.ycord.append(length + self.ystart)
+
+                # second co-ordinate
+
+                self.xcord.append(-length + self.xstart)
+                self.ycord.append(length + self.ystart)
+
+                # third co-ordinate
+
+                self.xcord.append(-length + self.xstart)
+                self.ycord.append(2* length + self.ystart)
+
+                # fourth co-ordinate
+
+                self.xcord.append(self.xstart)
+                self.ycord.append(2 * length + self.ystart)
+
+                # fifth co-ordinate
+
+                self.xcord.append(self.xstart)
+                self.ycord.append(3 * length + self.ystart)
+
+            if self.yfinish < self.ystart: # vertical line going downwards
+                # first leg
+                length = (self.ystart - self.yfinish) / 3
+                # starting coordinate
+
+                #self.xcord.append(self.xstart)
+                #self.ycord.append(self.ystart)
+
+                # first co-ordinate
+
+                self.xcord.append(self.xstart)
+                self.ycord.append(-length + self.ystart)
+
+                # second co-ordinate
+
+                self.xcord.append(length + self.xstart)
+                self.ycord.append(-length + self.ystart)
+
+                # third co-ordinate
+
+                self.xcord.append(length + self.xstart)
+                self.ycord.append(-2* length + self.ystart)
+
+                # fourth co-ordinate
+
+                self.xcord.append(self.xstart)
+                self.ycord.append(-2 * length + self.ystart)
+
+                # fifth co-ordinate
+
+                self.xcord.append(self.xstart)
+                self.ycord.append(-3 * length + self.ystart)
+
+            if self.ystart == self.yfinish:
+                self.xcord.append(self.xstart)
+                self.ycord.append(self.ystart)
+
+
+        # returns the x and y coordinated for each corner
+        return self.xcord, self.ycord
+
+# the code starts here
+
+# enter the number of cycles that you want, anything over 10 gets slow.
+NumberOfCycles = int(input("Number of interations = "))
+
+# the default is that the hat has a width of three.
+# we define hat 1 as an object from the class hat.
+
+hat1 = hat(0,0,3,0)
+
+# call the function calculatepoints from the class hat to get the first set of co-ordinates. 
+output = hat1.calculatepoints()
+
+xvalues = output[0]
+yvalues = output[1]
+
+#plot the first graph
+
+plt.plot(xvalues, yvalues, color=("red"))
+plt.ylim(0,3)
+plt.show()
+
+# now enter the loop
+
+for i in range (1,NumberOfCycles):
+
+
+    numberofeentries = len(xvalues)
+    print ("The iteration number = ",i)
+    xnew = []
+    ynew = []
+    for counter in range(0,numberofeentries-1):
+
+        # move through the list of x and y values taking one set and then the next 
+        # to get the co-ordinates at the start and finish of every line.
+        
+        x1 = xvalues[counter]
+        x2 = xvalues[counter + 1]
+        y1 = yvalues[counter]
+        y2 = yvalues[counter + 1]
+
+        # for each line then calculate the cordinates of vertices of the hat that is created
+
+        hat2 = hat(x1,y1,x2,y2)
+        output2 = hat2.calculatepoints()
+
+        #append the new set of coordinates to create a new list. 
+        
+        xnew.append(output2[0])
+        ynew.append(output2[1])
+
+    # after the loop, we have list of lists, so we flatten them to get a single list for plotting
+
+    flat_listx = list()
+
+    for sub_listx in xnew:
+        flat_listx += sub_listx
+
+    flat_listy = list()
+
+    for sub_listy in ynew:
+        flat_listy += sub_listy
+
+    #plot each graph
+
+    plt.plot(flat_listx,flat_listy, color=("red"))
+    plt.ylim(0, 3)
+    plt.show()
+    
+    # pass the list of x and y values ready ready for the next loop
+
+    xvalues = flat_listx
+    yvalues = flat_listy
