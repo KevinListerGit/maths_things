@@ -42,3 +42,5 @@ Power = 3
 Power  = 1.5
 ![mandelbrot1point5](https://user-images.githubusercontent.com/96957075/204508904-08bc6b29-c235-435d-950f-c0a50a99ce4a.jpg)
 
+Simple Fourier allows exploration of Gibbs correction to the a Fourer Series
+![image](https://user-images.githubusercontent.com/96957075/204514751-c402b0cc-e82b-4a9d-9c93-a00a0d501e22.png)
