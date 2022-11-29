@@ -14,3 +14,8 @@ after 1 iteration
 after 5 iterations
 
 ![emerging properties of a hat](https://user-images.githubusercontent.com/96957075/204494845-9652b7d8-84e7-4a05-94fc-e627f4d61295.jpg)
+
+And zooming in
+
+![emerging properties of a hat3](https://user-images.githubusercontent.com/96957075/204496625-c9473446-81fc-4295-a590-fcc7e414841c.jpg)
+
