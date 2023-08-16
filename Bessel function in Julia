@@ -1,0 +1,70 @@
+using Bessels
+using FunctionZeros
+using Plots
+
+numberofiterations = 100 # this is the number of interations that we do on the Bessel function
+
+# set up variables
+
+conductivity = 0.2
+StartingTemperature = 10
+
+time = 10
+
+DimOfArray = 100
+θ = range(0, 2π; length = DimOfArray)
+ρ = range(0, 1; length = DimOfArray)
+
+# set up arrays
+
+ρArray = Array{Float64}(undef, 1,DimOfArray)
+temperature = Array{Float64}(undef, 1,DimOfArray)
+
+# get a list of Bessel FunctionZeros
+
+BesselZerosList = Array{Float64}(undef, 1,numberofiterations)
+
+#get the zeros of the Bessel function and create a list of these
+
+for i = 1:numberofiterations
+    besselzero = besselj_zero(0, i)
+    BesselZerosList[i] = besselzero
+end
+
+# set up Bessel function
+
+function heat1(α,ρ,τ)
+    (2*StartingTemperature/(α * Bessels.besselj.(1,α)))*exp(-(conductivity*α)^2*τ)*Bessels.besselj.(0,α*ρ)
+end
+
+# time loop
+
+for ti = 0:time
+
+    for j = 1:DimOfArray
+        radius = ρ[j]
+        heatsum = 0.0
+        for k = 1:numberofiterations
+            zero = BesselZerosList[k]
+            heatcalculated = heat1(zero,radius,ti)
+            heatsum = heatsum + heatcalculated
+        
+        end
+        ρArray[j] = heatsum
+    end
+
+    # get string for chart title
+    timetext = string(ti)
+    titletext = "Time = " *  timetext
+
+    #setup array
+    ρArray2x2 = ρArray.*(θ./θ)
+
+    #print and disply
+    h1= heatmap(θ, ρ,ρArray2x2'; projection = :polar, color = :cividis, clims=(0, 5), right_margin = 2 * Plots.mm, title = titletext )
+    display(plot(h1))
+    
+    
+end
+
+
