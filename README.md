@@ -1,5 +1,5 @@
 # maths_things
-General maths things, fourier analysis, etc
+General maths things, fourier analysis, Bessel functions,  etc
 
 The emerging properties of a hat takes a hat and repeatedly copies the hat on each of the straight the lines of the hat
 
@@ -44,3 +44,15 @@ Power  = 1.5
 
 Simple Fourier allows exploration of Gibbs correction to the a Fourer Series
 ![image](https://user-images.githubusercontent.com/96957075/204514751-c402b0cc-e82b-4a9d-9c93-a00a0d501e22.png)
+
+Bessel function analysis showing temperature distribution over a disc at a given time
+
+![output](https://github.com/KevinListerGit/maths_things/assets/96957075/6f16ba2d-7131-4b25-99e8-78c3d8816182)
+
+![output2](https://github.com/KevinListerGit/maths_things/assets/96957075/1831f2c2-652d-4f71-8531-2bca4b9c3177)
+
+![output3](https://github.com/KevinListerGit/maths_things/assets/96957075/8d073c6f-f9db-44b1-b212-0219ab011542)
+
+![output4](https://github.com/KevinListerGit/maths_things/assets/96957075/366e82ef-6f3c-49f9-b0ba-4e63d0b1bfed)
+
+![output5](https://github.com/KevinListerGit/maths_things/assets/96957075/5359b2da-c1ed-4e47-8a66-9423ddd065a5)
